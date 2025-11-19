@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  checkspam-web:
+    container_name: checkspam-app
+    build: .
+    restart: always
+    ports:
+      - "3000:3000" # Host Port : Container Port (แก้เลข 3000 ตัวหน้าได้ถ้า port ชน)
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY} # รับค่าจาก Environment Variable ของ Portainer
+    networks:
+      - checkspam-net
+
+networks:
+  checkspam-net:
+    driver: bridge
